@@ -31,12 +31,6 @@ public class TestRenderImage : MonoBehaviour
 
     private void Start()
     {
-        if (!SystemInfo.supportsImageEffects)
-        {
-            enabled = false;
-            return;
-        }
-
         if (!curShader && !curShader.isSupported)
             enabled = false;
     }
@@ -54,6 +48,12 @@ public class TestRenderImage : MonoBehaviour
 
     private void Update()
     {
-        
+        greyscaleAmount = Mathf.Clamp(greyscaleAmount, 0.0f, 1.0f);
+    }
+
+    private void OnDisable()
+    {
+        if (screenMat)
+            DestroyImmediate(screenMat);
     }
 }
