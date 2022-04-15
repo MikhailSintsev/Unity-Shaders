@@ -2,12 +2,12 @@ using UnityEngine;
 
 [ExecuteInEditMode]
 
-public class TestRenderImage : MonoBehaviour
+public class RenderDepth : MonoBehaviour
 {
     #region Variables
 
     public Shader curShader;
-    public float greyscaleAmount = 1.0f;
+    public float depthPower = 0.2f;
 
     public Material screenMat;
 
@@ -39,7 +39,7 @@ public class TestRenderImage : MonoBehaviour
     {
         if (curShader != null)
         {
-            ScreenMat.SetFloat("_Luminosity", greyscaleAmount);
+            ScreenMat.SetFloat("_DepthPower", depthPower);
             Graphics.Blit(sourceTexture, destTexture, ScreenMat);
         }
         else
@@ -48,7 +48,8 @@ public class TestRenderImage : MonoBehaviour
 
     private void Update()
     {
-        greyscaleAmount = Mathf.Clamp(greyscaleAmount, 0.0f, 1.0f);
+        Camera.main.depthTextureMode = DepthTextureMode.Depth;
+        depthPower = Mathf.Clamp(depthPower, 0, 1);
     }
 
     private void OnDisable()

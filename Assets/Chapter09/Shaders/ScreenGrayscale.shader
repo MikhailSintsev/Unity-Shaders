@@ -31,7 +31,6 @@ Shader "Vedmate/Chapter09/ScreenGrayscale"
 
                 return renderTex;
             }
-
             ENDCG
         }
     }
