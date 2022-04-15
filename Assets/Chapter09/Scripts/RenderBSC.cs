@@ -2,12 +2,14 @@ using UnityEngine;
 
 [ExecuteInEditMode]
 
-public class RenderDepth : MonoBehaviour
+public class RenderBSC : MonoBehaviour
 {
     #region Variables
 
     public Shader curShader;
-    public float depthPower = 0.2f;
+    public float brightness = 1.0f;
+    public float saturation = 1.0f;
+    public float contrast = 1.0f;
 
     private Material screenMat;
 
@@ -39,7 +41,10 @@ public class RenderDepth : MonoBehaviour
     {
         if (curShader != null)
         {
-            ScreenMat.SetFloat("_DepthPower", depthPower);
+            ScreenMat.SetFloat("_Brightness", brightness);
+            ScreenMat.SetFloat("_Saturation", saturation);
+            ScreenMat.SetFloat("_Contrast", contrast);
+
             Graphics.Blit(sourceTexture, destTexture, ScreenMat);
         }
         else
@@ -48,8 +53,9 @@ public class RenderDepth : MonoBehaviour
 
     private void Update()
     {
-        Camera.main.depthTextureMode = DepthTextureMode.Depth;
-        depthPower = Mathf.Clamp(depthPower, 0, 1);
+        brightness = Mathf.Clamp(brightness, 0.0f, 2.0f);
+        saturation = Mathf.Clamp(saturation, 0.0f, 2.0f);
+        contrast = Mathf.Clamp(contrast, 0.0f, 3.0f);
     }
 
     private void OnDisable()

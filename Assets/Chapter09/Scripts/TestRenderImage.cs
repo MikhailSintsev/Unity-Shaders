@@ -9,7 +9,7 @@ public class TestRenderImage : MonoBehaviour
     public Shader curShader;
     public float greyscaleAmount = 1.0f;
 
-    public Material screenMat;
+    private Material screenMat;
 
     #endregion
 
