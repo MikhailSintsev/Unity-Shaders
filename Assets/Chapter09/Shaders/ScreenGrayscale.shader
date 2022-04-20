@@ -23,7 +23,7 @@ Shader "Vedmate/Chapter09/ScreenGrayscale"
                 // Get the colors from the RenderTexture and the UV's from the v2f_img struct
                 fixed4 renderTex = tex2D (_MainTex, i.uv);
 
-                // Apply the Luinosity values to our render texture
+                // Apply the Luminosity values to our render texture
                 float luminosity = 0.299 * renderTex.r + 0.587 * renderTex.g + 0.114 * renderTex.b;
                 fixed4 finalColor = lerp (renderTex, luminosity, _Luminosity);
 
